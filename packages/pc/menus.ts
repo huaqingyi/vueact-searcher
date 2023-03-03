@@ -1,8 +1,8 @@
 import { Input } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
-import { debounce, map } from 'lodash';
+import { debounce, findIndex, map } from 'lodash';
 import { computed, defineComponent, h, onMounted, ref } from 'vue';
-import { SearcherOption } from './types';
+import { SearcherOption } from '../types';
 
 export default defineComponent({
     props: ['option', 'modelValue', 'props'],
@@ -37,10 +37,17 @@ export default defineComponent({
             ]),
         ].concat(map(this.options, option => {
             return h('div', {
-                class: 'menu', onClick: () => this.value = option,
+                class: 'menu', onClick: () => {
+                    if (!this.value) return this.value = [option];
+                    let value: any[] = this.value.slice();
+                    const idx = findIndex(this.value, ({ value }: any) => value === option.value);
+                    if (idx >= 0) value = value.slice(0, idx).concat(value.slice(idx + 1));
+                    else value.push(option);
+                    this.value = value;
+                },
             }, [
                 h('div', { class: 'menutext' }, [option.label]),
-            ].concat((this.value || {}).value === option.value ? [
+            ].concat((this.value || []).find(({ value }: any) => value === option.value) ? [
                 h(CheckOutlined, {}, []),
             ] : []));
         })).concat([
@@ -50,5 +57,5 @@ export default defineComponent({
 });
 
 export function getLabel(option: SearcherOption) {
-    return { [`${option.label}: ${option.current.value}`]: option.value };
+    return { [`${option.label}: ${map(option.current, ({ value }) => value).join(',')}`]: option.value };
 }

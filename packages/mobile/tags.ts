@@ -1,8 +1,7 @@
-import { Button, DatePicker } from 'ant-design-vue';
-import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
-import moment, { Moment } from 'moment';
+import { Button, Select } from 'ant-design-vue';
+import { map } from 'lodash';
 import { computed, defineComponent, h, onMounted, ref } from 'vue';
-import { SearcherOption } from './types';
+import { SearcherOption } from '../types';
 
 export default defineComponent({
     props: ['option', 'modelValue', 'props'],
@@ -12,21 +11,17 @@ export default defineComponent({
             get: () => props.modelValue,
             set: value => emit('update:modelValue', value),
         });
-        const current = ref<Moment[]>([]);
-        onMounted(async () => {
-            current.value = props.modelValue;
-        });
+        const current = ref<string[]>([]);
+        onMounted(() => current.value = props.modelValue);
         return { value, current };
     },
     render() {
         return h('div', { class: 'childcctx' }, [
             h('div', { class: 'childcch' }, [this.option.label]),
             h('div', { class: 'childccc' }, [
-                h(DatePicker.RangePicker, {
-                    class: 'childcccs', value: this.current, allowClear: true,
-                    size: 'small', ...(this.option.props || {}), locale,
-                    onChange: (current: Moment[]) => this.current = current,
-                    getPopupContainer: (el: Element) => el.parentElement,
+                h(Select, {
+                    class: 'childcccs', value: this.current, size: 'small', mode: 'tags', ...(this.option.props || {}),
+                    onChange: (current: string[]) => this.current = current, getPopupContainer: (el: Element) => el.parentElement,
                 }, []),
             ]),
             h('div', { class: 'childccf' }, [
@@ -41,6 +36,5 @@ export default defineComponent({
 });
 
 export function getLabel(option: SearcherOption) {
-    const [start, end] = option.current;
-    return { [`${option.label}: ${moment(start).format('YYYY-MM-DD')} 至 ${moment(end).format('YYYY-MM-DD')}`]: option.value };
+    return { [`${option.label}: ${map(option.current, value => value).join(',')}`]: option.value };
 }

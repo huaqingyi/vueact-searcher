@@ -1,5 +1,5 @@
 import { computed, defineComponent, h, ref, watch } from 'vue';
-import { SearcherType, SearcherOption } from './types';
+import { SearcherType, SearcherOption } from '../types';
 import Menu, { getLabel as gm } from './menu';
 import Menus, { getLabel as gms } from './menus';
 import Input, { getLabel as gi } from './input';

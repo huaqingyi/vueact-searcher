@@ -2,7 +2,7 @@ import { Input } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
 import { debounce, findIndex, map } from 'lodash';
 import { computed, defineComponent, h, onMounted, ref } from 'vue';
-import { SearcherOption } from './types';
+import { SearcherOption } from '../types';
 
 export default defineComponent({
     props: ['option', 'modelValue', 'props'],

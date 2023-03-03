@@ -31,20 +31,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Searcher = void 0;
 var vue_1 = require("vue");
-var app_1 = __importDefault(require("./app"));
+var app_1 = __importDefault(require("./pc/app"));
+var app_2 = __importDefault(require("./mobile/app"));
+var compositions_1 = require("./compositions");
 __exportStar(require("./types"), exports);
 var Searcher = /** @class */ (function () {
     function Searcher(container, option) {
         var _this = this;
         this.container = container;
         this.option = option;
-        Promise.resolve().then(function () { return __importStar(require('ant-design-vue')); }).then(function (ElementPlus) {
-            var app = (0, vue_1.createApp)({
-                render: function () { return (0, vue_1.h)(app_1.default, option, []); },
-            });
-            app.use(ElementPlus);
-            app.mount(_this.container);
-        });
+        if ((0, compositions_1.isMobile)()) {
+            Promise.resolve().then(function () { return __importStar(require('vant')); }).then(function (Vant) {
+                var app = (0, vue_1.createApp)({
+                    render: function () { return (0, vue_1.h)(app_2.default, option, []); },
+                });
+                app.use(Vant);
+                app.mount(_this.container);
+            }).catch(function (err) { return console.error(err); });
+        }
+        else {
+            Promise.resolve().then(function () { return __importStar(require('ant-design-vue')); }).then(function (ElementPlus) {
+                var app = (0, vue_1.createApp)({
+                    render: function () { return (0, vue_1.h)(app_1.default, option, []); },
+                });
+                app.use(ElementPlus);
+                app.mount(_this.container);
+            }).catch(function (err) { return console.error(err); });
+        }
     }
     return Searcher;
 }());

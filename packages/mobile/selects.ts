@@ -1,7 +1,7 @@
 import { Button, Select } from 'ant-design-vue';
 import { map, uniqBy } from 'lodash';
 import { computed, defineComponent, h, onMounted, ref } from 'vue';
-import { SearcherOption } from './types';
+import { SearcherOption } from '../types';
 
 export default defineComponent({
     props: ['option', 'modelValue', 'props'],
