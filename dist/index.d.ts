@@ -1,3 +1,6 @@
+import 'ant-design-vue/dist/antd.css';
+import 'vant/lib/index.css';
+import './styles.less';
 import { SearcherOption } from './types';
 export * from './types';
 export type SOption = {
@@ -10,4 +13,3 @@ export declare class Searcher {
     option: SOption;
     constructor(container: HTMLElement, option: SOption);
 }
-//# sourceMappingURL=index.d.ts.map
