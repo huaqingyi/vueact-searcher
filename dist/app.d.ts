@@ -1,8 +1,8 @@
-import { SearcherType, SearcherOption } from './types';
+import { SearcherType, SearcherOption } from '../types';
 declare const _default: import("vue").DefineComponent<Readonly<{
     options?: any;
-    placeholder?: any;
     onChange?: any;
+    placeholder?: any;
 }>, {
     options: import("vue").Ref<{
         [x: string]: any;
@@ -10,7 +10,7 @@ declare const _default: import("vue").DefineComponent<Readonly<{
         value: string;
         type?: SearcherType | undefined;
         props?: any;
-        store?: ((...props: any[]) => import("./types").SearcherStore) | undefined;
+        store?: ((...props: any[]) => import("../types").SearcherStore) | undefined;
         current?: any;
     }[]>;
     value: import("vue").ComputedRef<any>;
@@ -21,11 +21,12 @@ declare const _default: import("vue").DefineComponent<Readonly<{
     SearcherType: typeof SearcherType;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<Readonly<{
     options?: any;
-    placeholder?: any;
     onChange?: any;
+    placeholder?: any;
 }>>>, {
     readonly options?: any;
-    readonly placeholder?: any;
     readonly onChange?: any;
+    readonly placeholder?: any;
 }>;
 export default _default;
+//# sourceMappingURL=app.d.ts.map

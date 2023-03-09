@@ -1,5 +1,5 @@
 import React, { createElement } from 'react';
-import '../dist/styles.css';
+import '../dist/index.css';
 import { createRoot } from 'react-dom/client';
 import { App } from './app';
 

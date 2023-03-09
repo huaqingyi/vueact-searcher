@@ -10,3 +10,4 @@ export declare class Searcher {
     option: SOption;
     constructor(container: HTMLElement, option: SOption);
 }
+//# sourceMappingURL=index.d.ts.map

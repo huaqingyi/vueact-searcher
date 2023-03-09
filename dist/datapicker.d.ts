@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { SearcherOption } from './types';
+import { SearcherOption } from '../types';
 declare const _default: import("vue").DefineComponent<Readonly<{
     props?: any;
     option?: any;
@@ -224,3 +224,4 @@ export default _default;
 export declare function getLabel(option: SearcherOption): {
     [x: string]: string;
 };
+//# sourceMappingURL=datapicker.d.ts.map

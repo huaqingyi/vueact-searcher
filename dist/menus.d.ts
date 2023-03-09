@@ -1,4 +1,4 @@
-import { SearcherOption } from './types';
+import { SearcherOption } from '../types';
 declare const _default: import("vue").DefineComponent<Readonly<{
     props?: any;
     option?: any;
@@ -8,9 +8,9 @@ declare const _default: import("vue").DefineComponent<Readonly<{
         [x: string]: any;
         label: string;
         value: string;
-        type?: import("./types").SearcherType | undefined;
+        type?: import("../types").SearcherType | undefined;
         props?: any;
-        store?: ((...props: any[]) => import("./types").SearcherStore) | undefined;
+        store?: ((...props: any[]) => import("../types").SearcherStore) | undefined;
         current?: any;
     }[]>;
     search: import("vue").Ref<string>;
@@ -31,3 +31,4 @@ export default _default;
 export declare function getLabel(option: SearcherOption): {
     [x: string]: string;
 };
+//# sourceMappingURL=menus.d.ts.map

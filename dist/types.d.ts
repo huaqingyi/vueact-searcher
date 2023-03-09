@@ -17,3 +17,4 @@ export interface SearcherOption {
     store?: (...props: any[]) => SearcherStore;
     current?: any;
 }
+//# sourceMappingURL=types.d.ts.map

@@ -1,28 +1,63 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import AutoImport from 'unplugin-auto-import/vite';
+import dts from 'vite-plugin-dts';
+import typescript2 from 'rollup-plugin-typescript2';
+import { join, basename } from 'path';
 
+// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [[vue()]],
+    // plugins: [
+    //     vue(),
+    //     // dts({
+    //     //     beforeWriteFile: (filePath, content) => {
+    //     //         return { filePath: join(__dirname, 'dist', basename(filePath)), content };
+    //     //     },
+    //     // }),
+    // ],
+    // build: {
+    //     target: 'modules',
+    //     outDir: 'dist',
+    //     assetsDir: 'assets',
+    //     minify: 'terser',
+    //     lib: {
+    //         entry: join(__dirname, 'packages/index.ts'),
+    //         name: 'vueact-searcher',
+    //         formats: ['es'],
+    //         fileName: 'index',
+    //     },
+    //     rollupOptions: {
+    //         input: join(__dirname, 'packages/index.ts'),
+    //         output: {
+    //             chunkFileNames: '[name].js',
+    //             entryFileNames: '[name].js',
+    //             format: 'commonjs',
+    //         },
+    //     },
+    // },
     build: {
-        target: 'es2015',
-        outDir: 'lib',
+        target: 'modules',
+        outDir: 'dist',
+        minify: true,
+        cssCodeSplit: true,
+        rollupOptions: {
+            input: join(__dirname, 'packages/index.ts'),
+            output: {
+                format: 'commonjs',
+                entryFileNames: '[name].js',
+                dir: 'dist',
+            },
+        },
         lib: {
-            name: 'es',
-            entry: './packages/index.ts',
+            entry: join(__dirname, 'packages/index.ts'),
+            name: 'vueact-searcher',
             formats: ['es'],
         },
-        rollupOptions: {
-            input: ['./packages/index.ts'],
-            // 确保外部化处理那些你不想打包进库的依赖
-            external: ['vue'],
-            output: {
-                dir: 'lib',
-                entryFileNames: '[name].js',
-                // file: 'dist/library.esm.js',
-                format: 'es',
-                exports: 'named',
-            },
-        }, // rollup打包配置
     },
+    plugins: [
+        vue(), dts({
+            beforeWriteFile: (filePath, content) => {
+                return { filePath: join(__dirname, 'dist', basename(filePath)), content };
+            },
+        }),
+    ],
 });
