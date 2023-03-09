@@ -30,8 +30,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Searcher = void 0;
-require("ant-design-vue/dist/antd.css");
-require("vant/lib/index.css");
+// import 'ant-design-vue/dist/antd.css';
+// import 'vant/lib/index.css';
 require("./styles.less");
 var vue_1 = require("vue");
 var app_1 = __importDefault(require("./pc/app"));
