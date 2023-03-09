@@ -1,4 +1,3 @@
-import './styles.less';
 import { SearcherOption } from './types';
 export * from './types';
 export type SOption = {

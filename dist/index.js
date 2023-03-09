@@ -32,7 +32,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Searcher = void 0;
 // import 'ant-design-vue/dist/antd.css';
 // import 'vant/lib/index.css';
-require("./styles.less");
+// import './styles.less';
 var vue_1 = require("vue");
 var app_1 = __importDefault(require("./pc/app"));
 __exportStar(require("./types"), exports);

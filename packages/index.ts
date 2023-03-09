@@ -1,6 +1,6 @@
 // import 'ant-design-vue/dist/antd.css';
 // import 'vant/lib/index.css';
-import './styles.less';
+// import './styles.less';
 import { createApp, h } from 'vue';
 import PCApp from './pc/app';
 import MoblieApp from './mobile/app';
